@@ -21,10 +21,21 @@ function askForName() {
     form.addEventListener("submit", handleSubmit);
 }
 
+function deleteName(event){
+    localStorage.removeItem(USER_LS);
+    greeting.classList.remove(SHOWING_CN);
+    form.classList.add(SHOWING_CN);
+}
+
 function paintGreeting(text) {
+    const delBtn = document.createElement("button");
     form.classList.remove(SHOWING_CN);
     greeting.classList.add(SHOWING_CN);
     greeting.innerText = `Hello ${text}`
+    delBtn.innerText = "✘";
+    delBtn.addEventListener("click", deleteName);
+    delBtn.className = "delBtn";
+    greeting.appendChild(delBtn);
 }
 
 function loadName() {
